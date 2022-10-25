@@ -1,5 +1,5 @@
 import requests
-from netra_id import get_netra_id
+from src.netra_id import get_netra_id
 
 
 def get_student_details(id):

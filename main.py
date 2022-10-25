@@ -4,7 +4,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 import src.services as services
 from src.students import student_info_att
-from netra_id import *
+import src.netra_id as netra_id
 
 
 app = Flask(__name__)
@@ -18,36 +18,49 @@ def bot():
 
 	incoming_msg = incoming_msg.lower()
 	output="Something went Wrong !!!"
+	bk="```"
 	if 'help' in incoming_msg:
 		output='''
-		Yoo {\U0001f91f}
-		commands :
-		1) Enter your jntuh rollno -> get ur details/attandence 
-		example :
-			20bd1a6647
-			result :
+		
+Yoo!!! 🤟
 
-			SANJUTH REDDY PULLAGURLA 
-			3rd year
-			CSM-A
+COMMANDS :
 
-			Overall Attendence %: 71.84%
+1) Enter your jntuh rollno -> get ur details/attandence 
+	example :
+		20bd1a6647
+	result :
 
-			Subject wise Attendence :
-			DLVS : 70.21%
-			DAA : 71.43%
-			SE : 65.85%
-			WT : 78.57%
-			PPG : 85.29%
-			MENTOR : 100%
-			WT_LAB : 40%
+		SANJUTH REDDY PULLAGURLA 
+		3rd year
+		CSM-A
 
-		# ik my attendence sucks ;_;
+		Overall Attendence %: 71.84%
 
-		2) date -> gives the date obslyy
-		3) joke -> makes aa lame joke, lol
-		4) motivate -> gives a quote which half of us dont even understand :)
-		'''
+		Subject wise Attendence :
+		DLVS : 70.21%
+		DAA : 71.43%
+		SE : 65.85%
+		WT : 78.57%
+		PPG : 85.29%
+		MENTOR : 100%
+		WT_LAB : 40%
+
+	# ik my attendence sucks ;_;
+
+2) date -> gives the date obslyy
+
+3) joke -> makes aa lame joke, lol
+
+4) motivate -> gives a quote which half of us dont even understand :)
+
+5) help -> u can figure out what this does👍
+
+Thank You 😎!!!
+
+'''
+		bk="```"
+		output=f"{bk}{output}{bk}"
 
 	elif 'date' in incoming_msg:
 		output = services.get_date()
@@ -65,39 +78,48 @@ def bot():
 			output = "Not a Valid roll"
 	else:
 		output='''
-		Yoo {\U0001f91f}
-		commands :
-		1) Enter your jntuh rollno -> get ur details/attandence 
-		example :
-			20bd1a6647
-			result :
+		
+Yoo!!! 🤟
 
-			SANJUTH REDDY PULLAGURLA 
-			3rd year
-			CSM-A
+COMMANDS :
 
-			Overall Attendence %: 71.84%
+1) Enter your jntuh rollno -> get ur details/attandence 
+	example :
+		20bd1a6647
+	result :
 
-			Subject wise Attendence :
-			DLVS : 70.21%
-			DAA : 71.43%
-			SE : 65.85%
-			WT : 78.57%
-			PPG : 85.29%
-			MENTOR : 100%
-			WT_LAB : 40%
+		SANJUTH REDDY PULLAGURLA 
+		3rd year
+		CSM-A
 
-		# ik my attendence sucks ;_;
+		Overall Attendence %: 71.84%
 
-		2) date -> gives the date obslyy
-		3) joke -> makes aa lame joke, lol
-		4) motivate -> gives a quote which half of us dont even understand :)
-		5) help -> u can figure out this does {\U0001f44d}
+		Subject wise Attendence :
+		DLVS : 70.21%
+		DAA : 71.43%
+		SE : 65.85%
+		WT : 78.57%
+		PPG : 85.29%
+		MENTOR : 100%
+		WT_LAB : 40%
 
-		Thank You {\U0001f60e}!!!
-		'''
+	# ik my attendence sucks ;_;
+
+2) date -> gives the date obslyy
+
+3) joke -> makes aa lame joke, lol
+
+4) motivate -> gives a quote which half of us dont even understand :)
+
+5) help -> u can figure out what this does👍
+
+Thank You 😎!!!
+
+'''
+		bk="```"
+		output=f"{bk}{output}{bk}"
 	msg.body(output)
 	return str(resp)
 
 if __name__ == '__main__':
-	app.run()
+	app.run(debug=True,host='0.0.0.0',port=8080)
